@@ -1,0 +1,8 @@
+<p-toast     [showTransitionOptions]="'100ms'"  ></p-toast>
+<div class="card flex justify-content-center">
+    <p-selectButton  [options]="datasSelect" class="mr-3" [(ngModel)]="datas" optionLabel="nome" ></p-selectButton> 
+    <p-button  (onClick)="atualizar()" label="Atualizar" ></p-button>
+</div>
+
+<p-chart height="650%" type="bar" [data]="basicData" [options]="basicOptions" ></p-chart>
+
