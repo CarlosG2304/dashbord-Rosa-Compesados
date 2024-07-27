@@ -1,4 +1,3 @@
-require('dotenv').config()
 
 module.exports =  {
     client: 'postgresql',
@@ -6,7 +5,7 @@ module.exports =  {
       host:'localhost',
       database: 'postgres',
       user:     'postgres',
-      password: process.env.senhaDB
+      password: '10012304'
     },
     pool: {
       min: 2,

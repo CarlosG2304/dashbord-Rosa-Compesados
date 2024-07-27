@@ -1,24 +1,24 @@
-import { Component } from '@angular/core';
-import { ChartModule } from 'primeng/chart';
-import { ChartService } from './chart.service';
-import { CalendarModule } from 'primeng/calendar';
-import { FormsModule } from '@angular/forms';
-import { SelectButtonModule } from 'primeng/selectbutton';
-import { ButtonModule } from 'primeng/button';
-import { MessageService } from 'primeng/api';
-import { SidebarModule } from 'primeng/sidebar';
-import { ToastModule } from 'primeng/toast';
+import { Component, OnInit } from '@angular/core';
 import { CoreModule } from '../core/core.module';
-
+import { ToastModule } from 'primeng/toast';
+import { SidebarModule } from 'primeng/sidebar';
+import { ButtonModule } from 'primeng/button';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { FormsModule } from '@angular/forms';
+import { CalendarModule } from 'primeng/calendar';
+import { ChartModule } from 'primeng/chart';
+import { ChartService } from '../chart/chart.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-chart',
+  selector: 'app-pizza',
+  templateUrl: './pizza.component.html',
   standalone: true,
   imports: [ChartModule, CalendarModule,FormsModule,SelectButtonModule, ButtonModule, SidebarModule,ToastModule,CoreModule],
-  templateUrl: './chart.component.html',
-  styleUrls:[ './chart.component.css']
+  styleUrls: ['./pizza.component.css']
 })
-export class ChartComponent {
+export class PizzaComponent implements OnInit {
+
   basicData: any;
 
   basicOptions: any;
@@ -196,6 +196,17 @@ datasets2:any = []
     
 
 }
+generateColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  
+  return color;
+  
+}
 dashboard(){
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
@@ -203,20 +214,20 @@ dashboard(){
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
     this.basicData = {
-        labels: ['Almoxarifado', 'Mao de Obra', 'Administração'],
+        labels: ['Almoxarifado', 'Mao de Obra', 'Administração','Insumos','Energia','Materia Prima', 'Impostos','Comissoes'],
         datasets: [
             {
                 label: 'Valor Total',
-                data: [this.valores.Almoxarifado,this.valores.MO, this.valores.Adm],
-                backgroundColor: 'rgba(255, 159, 64, 1)',
-                borderColor: 'rgb(255, 159, 64)',
+                data: [this.valores.Almoxarifado,this.valores.MO, this.valores.Adm, this.valores.Insumos,this.valores.Energia, this.valores.MateriaPrima, this.valores.Impostos,this.valores.Comissoes],
+                backgroundColor: [this.generateColor(),this.generateColor(), this.generateColor(),this.generateColor(),this.generateColor(),this.generateColor(),this.generateColor(),this.generateColor()],
+                borderColor: ['[rgb(255, 159, 64)'],
                 borderWidth: 1
             },
             {
                 label: 'Fabrica',
-                backgroundColor: 'rgba(55, 62, 255,0.8)',
-                borderColor: documentStyle.getPropertyValue('--blue-500'),
-                data: [this.valores.AlmoFabrica,this.valores.MOFabrica, this.valores.AdmFabrica]
+                data: [this.valores.AlmoFabrica,this.valores.MOFabrica, this.valores.AdmFabrica, this.valores.Insumos,this.valores.Energia, this.valores.MateriaPrima, this.valores.Impostos,this.valores.Comissoes],
+                backgroundColor: [this.generateColor(),this.generateColor(), this.generateColor(),this.generateColor(),this.generateColor(),this.generateColor(),this.generateColor(),this.generateColor()],
+                borderColor: documentStyle.getPropertyValue('--blue-500')
             },
            
         ]
@@ -254,61 +265,4 @@ dashboard(){
     };
 }
 
-dashboard2(){
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
-    this.basicData = {
-        labels: ['Insumos','Energia','Materia Prima', 'Impostos','Comissoes'],
-        datasets: [
-            {
-                label: 'Valor Total',
-                data: [this.valores.Insumos,this.valores.Energia, this.valores.MateriaPrima, this.valores.Impostos,this.valores.Comissoes],
-                backgroundColor: 'rgba(255, 159, 64, 1)',
-                borderColor: 'rgb(255, 159, 64)',
-                borderWidth: 1
-            }
-           
-        ]
-    };
-
-    this.basicOptions = {
-        plugins: {
-            legend: {
-                labels: {
-                    color: 'white'
-                }
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    color: 'white'
-                },
-                grid: {
-                    color: 'white',
-                    drawBorder: false
-                }
-            },
-            x: {
-                ticks: {
-                    color: 'white'
-                },
-                grid: {
-                    color: "white",
-                    drawBorder: false
-                }
-            }
-        }
-    };
 }
-
-    trocar(){
-        this.Isdashboard?  this.dashboard2() : this.dashboard()
-        this.Isdashboard?  this.Isdashboard = false: this.Isdashboard = true
-    }
-}
-

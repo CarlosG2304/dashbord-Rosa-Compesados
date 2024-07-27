@@ -1,20 +1,21 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ChartService {
+export class BarClusterService {
 
   constructor(private http: HttpClient) { }
-almoxarifadoURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/0100'
-AdmURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/0228'
-MaoObraURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/0229'
-InsumosURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/0074'
-EnergiaURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/0080'
-MateriaURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/0204'
-ImpostosURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/0106'
-ComissoesURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/0230' 
+
+almoxarifadoURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/0100'
+AdmURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/0228'
+MaoObraURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/0229'
+InsumosURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/0074'
+EnergiaURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/0080'
+MateriaURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/0204'
+ImpostosURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/0106'
+ComissoesURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/0230' 
   
   getAlmo(datas:any):Promise<any>{
     
@@ -82,10 +83,3 @@ ComissoesURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUST
                   
                  
                          }
-
-
-        
-                                     
-        
-        
-
