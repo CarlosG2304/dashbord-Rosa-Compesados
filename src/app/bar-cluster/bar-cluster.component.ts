@@ -1,28 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { CalendarModule } from 'primeng/calendar';
-import { ChartModule } from 'primeng/chart';
-import { SelectButtonModule } from 'primeng/selectbutton';
-import { SidebarModule } from 'primeng/sidebar';
-import { ToastModule } from 'primeng/toast';
-import { CoreModule } from '../core/core.module';
-import { ChartService } from '../chart/chart.service';
 import { MessageService } from 'primeng/api';
 import { BarClusterService } from './bar-cluster.service';
-
 @Component({
   selector: 'app-bar-cluster',
   templateUrl: './bar-cluster.component.html',
-  imports: [ChartModule, CalendarModule,FormsModule,SelectButtonModule, ButtonModule, SidebarModule,ToastModule,CoreModule],
-  styleUrls: ['./bar-cluster.component.css'],
-  standalone: true,
+  styleUrls: ['./bar-cluster.component.css']
 })
 export class BarClusterComponent implements OnInit {
   basicData: any;
 
   basicOptions: any;
   
+  carregando:boolean = true 
 
   sidebarVisible = true
   constructor(private chartService:BarClusterService,
@@ -79,10 +68,11 @@ export class BarClusterComponent implements OnInit {
      }]
 
      datas = {
-        "nome": 'Junho',
-        "data_inicio": "2024-06-01",
-        "data_fim": "2024-06-30"
-     }
+      "nome": 'Setembro',
+  "data_inicio": "2024-09-01",
+  "data_fim": "2024-09-30"
+   }
+   
  valores ={
     "Almoxarifado":0,
     "Adm":0,
@@ -127,7 +117,31 @@ generateColor() {
   }
 
 atualizar(){
-    
+  this.carregando = true
+  this.valores ={
+    "Almoxarifado":0,
+    "Adm":0,
+    "MO": 0,
+    "AlmoFabrica":0,
+    "MOFabrica":0,
+    "AdmFabrica":0,
+    "Insumos":0,
+    "Energia":0,
+    "MateriaPrima":0,
+    "Impostos":0,
+    "Comissoes":0,
+ };
+
+ this.data = [];
+ this.dataset  = {
+    type: 'bar',
+    label: 'Dataset 1',
+    backgroundColor: 'rgba(255, 159, 64, 1)',
+    data: []
+}
+
+this.datasets = []
+this.datasets2 = []
     this.chartService.getAlmo(this.datas).then(dados => {
         for(let dado of dados){
             let dataset = {
@@ -149,7 +163,7 @@ atualizar(){
             this.valores.MO += dados[i].Soma
             i++
           }
-          this.messageService.add({ severity: 'success', detail: 'Mão de Obra carregado com sucesso' });
+        /*   this.messageService.add({ severity: 'success', detail: 'Mão de Obra carregado com sucesso' }); */
         
       } ).then(() =>{
         let i = 0
@@ -173,8 +187,9 @@ atualizar(){
             data: [this.valores.Almoxarifado,this.valores.MO,this.valores.Adm]
         },)
       } ).then(() => {
+      
           this.dashboard()
-       this.messageService.add({ severity: 'success', detail: 'Administrativo carregado com sucesso' });
+       /* this.messageService.add({ severity: 'success', detail: 'Administrativo carregado com sucesso' }); */
       }) .catch(erro => {
           this.messageService.add({ severity: 'error', detail: 'Erro Administrativo! Message: '+erro.message });
           console.log(erro)
@@ -185,7 +200,7 @@ atualizar(){
           console.log(erro)
         });
        
-     this.messageService.add({ severity: 'success', detail: 'Almoxarifado carregado com sucesso' });
+    /*  this.messageService.add({ severity: 'success', detail: 'Almoxarifado carregado com sucesso' }); */
     }) .catch(erro => {
         this.messageService.add({ severity: 'error', detail: 'Erro Almoxarifado! Message: '+erro.message });
         console.log(erro)
@@ -203,7 +218,7 @@ atualizar(){
           this.datasets2.push(dataset)
           
       }
-        this.messageService.add({ severity: 'success', detail: 'Insumos carregado com sucesso' });
+       /*  this.messageService.add({ severity: 'success', detail: 'Insumos carregado com sucesso' }); */
       
     } ).then(() => {
       let i = 0
@@ -213,7 +228,7 @@ atualizar(){
           this.valores.Energia += dados[i].Soma
           i++
         }
-        this.messageService.add({ severity: 'success', detail: 'Energia carregada com sucesso' });
+        /* this.messageService.add({ severity: 'success', detail: 'Energia carregada com sucesso' }); */
       
     } ).then(() => {
 
@@ -224,7 +239,7 @@ atualizar(){
           this.valores.MateriaPrima += dados[i].Soma
           i++
         }
-        this.messageService.add({ severity: 'success', detail: 'Materia Prima carregada com sucesso' });
+     /*    this.messageService.add({ severity: 'success', detail: 'Materia Prima carregada com sucesso' }); */
       
     } ).then(() => {
       this.chartService.getImpostos(this.datas).then(dados => {
@@ -234,7 +249,7 @@ atualizar(){
           this.valores.Impostos += dados[i].Soma
           i++
         }
-        this.messageService.add({ severity: 'success', detail: 'Impostos carregada com sucesso' });
+       /*  this.messageService.add({ severity: 'success', detail: 'Impostos carregada com sucesso' }); */
       
     } ).then(() => { 
       this.chartService.getComissoes(this.datas).then(dados => {
@@ -253,7 +268,7 @@ atualizar(){
           tension: 0.4,
           data: [this.valores.Insumos,this.valores.Energia,this.valores.MateriaPrima,this.valores.Impostos, this.valores.Comissoes]
       },)
-        this.messageService.add({ severity: 'success', detail: 'Comissoes carregada com sucesso' });
+      /*   this.messageService.add({ severity: 'success', detail: 'Comissoes carregada com sucesso' }); */
       
     } ) .catch(erro => {
         this.messageService.add({ severity: 'error', detail: 'Erro Comissoes! Message: '+erro.message });
@@ -283,8 +298,8 @@ dashboard(){
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
- 
-    console.log(this.datasets)
+    this.carregando = false
+    console.log()
     this.basicData = {
         labels: ['Almoxarifado', 'Mão de Obra','Administrativo'],
         datasets: this.datasets

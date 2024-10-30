@@ -1,20 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CoreModule } from '../core/core.module';
-import { ToastModule } from 'primeng/toast';
-import { SidebarModule } from 'primeng/sidebar';
-import { ButtonModule } from 'primeng/button';
-import { SelectButtonModule } from 'primeng/selectbutton';
-import { FormsModule } from '@angular/forms';
-import { CalendarModule } from 'primeng/calendar';
-import { ChartModule } from 'primeng/chart';
 import { ChartService } from '../chart/chart.service';
 import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-pizza',
   templateUrl: './pizza.component.html',
-  standalone: true,
-  imports: [ChartModule, CalendarModule,FormsModule,SelectButtonModule, ButtonModule, SidebarModule,ToastModule,CoreModule],
   styleUrls: ['./pizza.component.css']
 })
 export class PizzaComponent implements OnInit {
@@ -79,10 +69,11 @@ export class PizzaComponent implements OnInit {
      }]
 
      datas = {
-        "nome": 'Junho',
-        "data_inicio": "2024-06-01",
-        "data_fim": "2024-06-30"
+        "nome": 'Setembro',
+    "data_inicio": "2024-09-01",
+    "data_fim": "2024-09-30"
      }
+     
  valores ={
     "Almoxarifado":0,
     "Adm":0,

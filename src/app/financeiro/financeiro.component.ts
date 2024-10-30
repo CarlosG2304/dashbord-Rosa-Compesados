@@ -1,28 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { ChartModule } from "primeng/chart";
-import { CalendarModule } from "primeng/calendar";
-import { FormsModule } from "@angular/forms";
-import { SelectButtonModule } from "primeng/selectbutton";
-import { ButtonModule } from "primeng/button";
 import { MessageService } from "primeng/api";
-import { SidebarModule } from "primeng/sidebar";
-import { ToastModule } from "primeng/toast";
-import { CoreModule } from "../core/core.module";
 import { ChartService } from "../chart/chart.service";
 import { FinanceiroService } from "./financeiro.service";
 @Component({
   selector: "app-financeiro",
-  standalone: true,
-  imports: [
-    ChartModule,
-    CalendarModule,
-    FormsModule,
-    SelectButtonModule,
-    ButtonModule,
-    SidebarModule,
-    ToastModule,
-    CoreModule,
-  ],
   templateUrl: "./financeiro.component.html",
   styleUrls: ["./financeiro.component.css"],
 })
@@ -100,11 +81,12 @@ export class FinanceiroComponent implements OnInit {
     },
   ];
 
-  datas = {
-    nome: "Julho",
-    data_inicio: "2024-07-01",
-    data_fim: "2024-07-31",
-  };
+  datas =  {
+    "nome": 'Setembro',
+"data_inicio": "2024-09-01",
+"data_fim": "2024-09-30"
+ };
+  
   valores = {
     Almoxarifado: 0,
     Adm: 0,

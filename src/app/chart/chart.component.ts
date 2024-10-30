@@ -1,20 +1,10 @@
 import { Component } from '@angular/core';
-import { ChartModule } from 'primeng/chart';
 import { ChartService } from './chart.service';
-import { CalendarModule } from 'primeng/calendar';
-import { FormsModule } from '@angular/forms';
-import { SelectButtonModule } from 'primeng/selectbutton';
-import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
-import { SidebarModule } from 'primeng/sidebar';
-import { ToastModule } from 'primeng/toast';
-import { CoreModule } from '../core/core.module';
 
 
 @Component({
   selector: 'app-chart',
-  standalone: true,
-  imports: [ChartModule, CalendarModule,FormsModule,SelectButtonModule, ButtonModule, SidebarModule,ToastModule,CoreModule],
   templateUrl: './chart.component.html',
   styleUrls:[ './chart.component.css']
 })
@@ -79,10 +69,11 @@ export class ChartComponent {
      }]
 
      datas = {
-        "nome": 'Junho',
-        "data_inicio": "2024-06-01",
-        "data_fim": "2024-06-30"
+        "nome": 'Setembro',
+    "data_inicio": "2024-09-01",
+    "data_fim": "2024-09-30"
      }
+     
  valores ={
     "Almoxarifado":0,
     "Adm":0,

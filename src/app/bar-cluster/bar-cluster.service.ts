@@ -11,6 +11,9 @@ export class BarClusterService {
 almoxarifadoURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/0100'
 AdmURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/0228'
 MaoObraURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/0229'
+almoxarifadoFAURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/FABRICA/0100'
+AdmFAURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/FABRICA/0228'
+MaoObraFAURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/FABRICA/0229'
 InsumosURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/0074'
 EnergiaURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/0080'
 MateriaURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUSTO/CLUSTER/0204'
@@ -41,6 +44,32 @@ ComissoesURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUST
            params = params.set('data_fim',datas.data_fim)
           return this.http.get(this.MaoObraURL,{params}).toPromise()
           }
+
+          getAlmoFabrica(datas:any):Promise<any>{
+    
+            let params = new HttpParams();
+                params = params.set('data_inicio',datas.data_inicio)
+               params = params.set('data_fim',datas.data_fim)
+              return this.http.get(this.almoxarifadoFAURL,{params}).toPromise()
+              }
+          
+               
+            getADMFabrica(datas:any):Promise<any>{
+              
+              let params = new HttpParams();
+                  params = params.set('data_inicio',datas.data_inicio)
+                 params = params.set('data_fim',datas.data_fim)
+                return this.http.get(this.AdmFAURL,{params}).toPromise()
+                }
+          
+              getMOFabrica(datas:any):Promise<any>{
+              
+                  let params = new HttpParams();
+                      params = params.set('data_inicio',datas.data_inicio)
+                     params = params.set('data_fim',datas.data_fim)
+                    return this.http.get(this.MaoObraFAURL,{params}).toPromise()
+                    }
+        
 
      getInsumos(datas:any):Promise<any>{
     

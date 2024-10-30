@@ -41,6 +41,8 @@ ComissoesURL = 'http:'+window.location.href.toString().split(':')[1]+':3000/CUST
           return this.http.get(this.MaoObraURL,{params}).toPromise()
           }
 
+          
+
      getInsumos(datas:any):Promise<any>{
     
        let params = new HttpParams();
